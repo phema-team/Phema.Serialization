@@ -1,5 +1,5 @@
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Phema.Serialization.Tests
 {
@@ -25,34 +25,34 @@ namespace Phema.Serialization.Tests
 			services = new ServiceCollection()
 				.AddSerializer<StabSerializer>();
 		}
-		
+
 		[Fact]
 		public void AddsSerializerToCollection()
 		{
 			Assert.Single(services);
 		}
-		
+
 		[Fact]
 		public void SingletonSerializer()
 		{
 			var service = Assert.Single(services);
-			
+
 			Assert.Equal(ServiceLifetime.Singleton, service.Lifetime);
 		}
-		
+
 		[Fact]
 		public void AsISerializerSerializer()
 		{
 			var service = Assert.Single(services);
-			
+
 			Assert.Equal(typeof(ISerializer), service.ServiceType);
 		}
-		
+
 		[Fact]
 		public void ImplementationSerializer()
 		{
 			var service = Assert.Single(services);
-			
+
 			Assert.Equal(typeof(StabSerializer), service.ImplementationType);
 		}
 	}

@@ -1,8 +1,6 @@
-using System.Text;
 using MessagePack.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace Phema.Serialization.MessagePack.Tests
