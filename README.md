@@ -8,6 +8,9 @@ services.AddJsonSerializer();
 // MPCK
 services.AddMessagePackSerializer();
 
+// XML
+services.AddXmlSerializer();
+
 // Resolve
 var serializer = provider.GetRequiredService<ISerializer>();
 
