@@ -17,7 +17,7 @@ namespace Phema.Serialization.Json.Tests
 		public void Serialization()
 		{
 			var provider = new ServiceCollection()
-				.AddJsonSerializer()
+				.AddPhemaJsonSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetRequiredService<IOptions<JsonSerializerOptions>>().Value;
@@ -53,7 +53,7 @@ namespace Phema.Serialization.Json.Tests
 		public void Deserialization()
 		{
 			var provider = new ServiceCollection()
-				.AddJsonSerializer()
+				.AddPhemaJsonSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetRequiredService<IOptions<JsonSerializerOptions>>().Value;

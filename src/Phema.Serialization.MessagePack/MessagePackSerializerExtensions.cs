@@ -5,11 +5,11 @@ namespace Phema.Serialization
 {
 	public static class MessagePackSerializerExtensions
 	{
-		public static IServiceCollection AddMessagePackSerializer(this IServiceCollection services, Action<MessagePackSerializerOptions> options = null)
+		public static IServiceCollection AddPhemaMessagePackSerializer(this IServiceCollection services, Action<MessagePackSerializerOptions> options = null)
 		{
 			options = options ?? (o => {});
 			
-			return services.AddSerializer<MessagePackSerializer>()
+			return services.AddPhemaSerializer<MessagePackSerializer>()
 				.Configure(options);
 		}
 	}

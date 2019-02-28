@@ -19,7 +19,7 @@ namespace Phema.Serialization.Xml.Tests
 		public void AddsOptions()
 		{
 			var provider = services
-				.AddXmlSerializer()
+				.AddPhemaXmlSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetService<IOptions<XmlSerializerOptions>>();
@@ -36,7 +36,7 @@ namespace Phema.Serialization.Xml.Tests
 		public void ConfiguresOptions()
 		{
 			var provider = services
-				.AddXmlSerializer(o =>
+				.AddPhemaXmlSerializer(o =>
 				{
 					o.Encoding = Encoding.ASCII;
 					o.ExceptionTypes = YAXExceptionTypes.Ignore;

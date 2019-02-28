@@ -18,7 +18,7 @@ namespace Phema.Serialization.MessagePack.Tests
 		public void AddsOptions()
 		{
 			var provider = services
-				.AddMessagePackSerializer()
+				.AddPhemaMessagePackSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetService<IOptions<MessagePackSerializerOptions>>();
@@ -36,7 +36,7 @@ namespace Phema.Serialization.MessagePack.Tests
 			var resolver = new DynamicContractlessObjectResolverAllowPrivate();
 			
 			var provider = services
-				.AddMessagePackSerializer(o => o.FormatterResolver = resolver)
+				.AddPhemaMessagePackSerializer(o => o.FormatterResolver = resolver)
 				.BuildServiceProvider();
 
 			var options = provider.GetService<IOptions<MessagePackSerializerOptions>>();

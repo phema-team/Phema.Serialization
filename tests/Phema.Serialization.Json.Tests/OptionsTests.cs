@@ -19,7 +19,7 @@ namespace Phema.Serialization.Json.Tests
 		public void AddsOptions()
 		{
 			var provider = services
-				.AddJsonSerializer()
+				.AddPhemaJsonSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetService<IOptions<JsonSerializerOptions>>();
@@ -35,7 +35,7 @@ namespace Phema.Serialization.Json.Tests
 			var settings = new JsonSerializerSettings();
 			
 			var provider = services
-				.AddJsonSerializer(o =>
+				.AddPhemaJsonSerializer(o =>
 				{
 					o.Encoding = Encoding.ASCII;
 					o.SerializerSettings = settings;

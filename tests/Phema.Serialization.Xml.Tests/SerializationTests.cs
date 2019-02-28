@@ -17,7 +17,7 @@ namespace Phema.Serialization.Xml.Tests
 		public void Serialization()
 		{
 			var provider = new ServiceCollection()
-				.AddXmlSerializer()
+				.AddPhemaXmlSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetRequiredService<IOptions<XmlSerializerOptions>>().Value;
@@ -45,7 +45,7 @@ namespace Phema.Serialization.Xml.Tests
 		public void Deserialization()
 		{
 			var provider = new ServiceCollection()
-				.AddXmlSerializer()
+				.AddPhemaXmlSerializer()
 				.BuildServiceProvider();
 
 			var options = provider.GetRequiredService<IOptions<XmlSerializerOptions>>().Value;

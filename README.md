@@ -1,15 +1,15 @@
 # Phema.Serialization
-C# Json and messagepack DI services
+C# Json, xml and messagepack DI services
 
 ```csharp
 // JSON
-services.AddJsonSerializer();
+services.AddPhemaJsonSerializer();
 
 // MPCK
-services.AddMessagePackSerializer();
+services.AddPhemaMessagePackSerializer();
 
 // XML
-services.AddXmlSerializer();
+services.AddPhemaXmlSerializer();
 
 // Resolve
 var serializer = provider.GetRequiredService<ISerializer>();

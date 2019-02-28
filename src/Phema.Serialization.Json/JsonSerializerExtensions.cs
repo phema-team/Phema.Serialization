@@ -5,11 +5,11 @@ namespace Phema.Serialization
 {
 	public static class JsonSerializerExtensions
 	{
-		public static IServiceCollection AddJsonSerializer(this IServiceCollection services, Action<JsonSerializerOptions> options = null)
+		public static IServiceCollection AddPhemaJsonSerializer(this IServiceCollection services, Action<JsonSerializerOptions> options = null)
 		{
 			options = options ?? (o => {});
 			
-			return services.AddSerializer<JsonSerializer>()
+			return services.AddPhemaSerializer<JsonSerializer>()
 				.Configure(options);
 		}
 	}
