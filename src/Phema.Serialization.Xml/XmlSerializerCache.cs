@@ -6,15 +6,15 @@ namespace Phema.Serialization
 {
 	internal static class XmlSerializerCache
 	{
-		private static readonly IDictionary<Type, YAXSerializer> cache;
+		private static readonly IDictionary<Type, YAXSerializer> Cache;
 
 		public static YAXSerializer GetOrCreate<TValue>(XmlSerializerOptions options)
 		{
 			var type = typeof(TValue);
 			
-			if (!cache.TryGetValue(type, out var serializer))
+			if (!Cache.TryGetValue(type, out var serializer))
 			{
-				cache.Add(type, serializer = new YAXSerializer(
+				Cache.Add(type, serializer = new YAXSerializer(
 					type,
 					options.ExceptionHandlingPolicies,
 					options.ExceptionTypes,
@@ -26,7 +26,7 @@ namespace Phema.Serialization
 		
 		static XmlSerializerCache()
 		{
-			cache = new Dictionary<Type, YAXSerializer>();
+			Cache = new Dictionary<Type, YAXSerializer>();
 		}
 	}
 }

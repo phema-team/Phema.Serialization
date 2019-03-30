@@ -1,9 +1,9 @@
-using System.Xml.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
-namespace Phema.Serialization.Xml.Tests
+namespace Phema.Serialization.Json.Tests
 {
 	public class SerializationTests
 	{
@@ -17,10 +17,10 @@ namespace Phema.Serialization.Xml.Tests
 		public void Serialization()
 		{
 			var provider = new ServiceCollection()
-				.AddXmlSerializer()
+				.AddNewtonsoftJsonSerializer()
 				.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<XmlSerializerOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<NewtonsoftJsonSerializerOptions>>().Value;
 			var serializer = provider.GetRequiredService<ISerializer>();
 
 			var person = new Person
@@ -32,30 +32,34 @@ namespace Phema.Serialization.Xml.Tests
 
 			var message = options.Encoding.GetString(data);
 
-			var xml = new XDocument(
-				new XElement("Person", 
-					new XElement("Name", "Sarah"),
-					new XElement("Age", "12")))
-				.ToString();
+			var json = JObject.Parse(message);
 			
-			Assert.Equal(xml, message);
+			Assert.Equal(2, json.Count);
+			
+			Assert.Collection<JToken>(json,
+				name =>
+				{
+					Assert.Equal("Name", name.Path);
+					Assert.Equal("Sarah", name.ToObject<string>());
+				},
+				age =>
+				{
+					Assert.Equal("Age", age.Path);
+					Assert.Equal(12, age.ToObject<int>());
+				});
 		}
 		
 		[Fact]
 		public void Deserialization()
 		{
 			var provider = new ServiceCollection()
-				.AddXmlSerializer()
+				.AddNewtonsoftJsonSerializer()
 				.BuildServiceProvider();
 
-			var options = provider.GetRequiredService<IOptions<XmlSerializerOptions>>().Value;
+			var options = provider.GetRequiredService<IOptions<NewtonsoftJsonSerializerOptions>>().Value;
 			var serializer = provider.GetRequiredService<ISerializer>();
 
-			var data = new XDocument(
-				new XElement("Person", 
-					new XElement("Name", "Sarah"),
-					new XElement("Age", "12")))
-				.ToString();
+			var data = @"{""Name"": ""Sarah"", ""Age"": ""12""}";
 
 			var message = options.Encoding.GetBytes(data);
 			

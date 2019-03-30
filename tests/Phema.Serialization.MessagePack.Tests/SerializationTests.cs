@@ -16,7 +16,7 @@ namespace Phema.Serialization.Json.Tests
 		public void Serialization()
 		{
 			var serializer = new ServiceCollection()
-				.AddPhemaMessagePackSerializer()
+				.AddMessagePackSerializer()
 				.BuildServiceProvider()
 				.GetRequiredService<ISerializer>();
 
@@ -36,7 +36,7 @@ namespace Phema.Serialization.Json.Tests
 		public void Deserialization()
 		{
 			var serializer = new ServiceCollection()
-				.AddPhemaMessagePackSerializer()
+				.AddMessagePackSerializer()
 				.BuildServiceProvider()
 				.GetRequiredService<ISerializer>();
 

@@ -19,10 +19,10 @@ namespace Phema.Serialization.Json.Tests
 		public void AddsOptions()
 		{
 			var provider = services
-				.AddPhemaJsonSerializer()
+				.AddNewtonsoftJsonSerializer()
 				.BuildServiceProvider();
 
-			var options = provider.GetService<IOptions<JsonSerializerOptions>>();
+			var options = provider.GetService<IOptions<NewtonsoftJsonSerializerOptions>>();
 			
 			Assert.NotNull(options);
 			Assert.NotNull(options.Value);
@@ -35,14 +35,14 @@ namespace Phema.Serialization.Json.Tests
 			var settings = new JsonSerializerSettings();
 			
 			var provider = services
-				.AddPhemaJsonSerializer(o =>
+				.AddNewtonsoftJsonSerializer(o =>
 				{
 					o.Encoding = Encoding.ASCII;
 					o.SerializerSettings = settings;
 				})
 				.BuildServiceProvider();
 
-			var options = provider.GetService<IOptions<JsonSerializerOptions>>();
+			var options = provider.GetService<IOptions<NewtonsoftJsonSerializerOptions>>();
 
 			Assert.Equal(Encoding.ASCII, options.Value.Encoding);
 			Assert.Equal(settings, options.Value.SerializerSettings);

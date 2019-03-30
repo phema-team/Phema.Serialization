@@ -1,15 +1,27 @@
 # Phema.Serialization
-C# Json, xml and messagepack DI services
+
+[![Nuget](https://img.shields.io/nuget/v/Phema.Serialization.svg)](https://www.nuget.org/packages/Phema.Serialization)
+
+C# Json, xml, protobuf and messagepack wrappers for `Microsoft.Extensions.DependencyInjection`
+
+## Usage
 
 ```csharp
-// JSON
-services.AddPhemaJsonSerializer();
 
-// MPCK
-services.AddPhemaMessagePackSerializer();
+// Json
+services.AddJsonSerializer();
+
+// Newtonsoft.Json
+services.AddNewtonsoftJsonSerializer();
+
+// MessagePack
+services.AddMessagePackSerializer();
 
 // XML
-services.AddPhemaXmlSerializer();
+services.AddXmlSerializer();
+
+// Protobuf
+services.AddProtobufSerializer();
 
 // Resolve
 var serializer = provider.GetRequiredService<ISerializer>();

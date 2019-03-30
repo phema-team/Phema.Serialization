@@ -23,7 +23,7 @@ namespace Phema.Serialization.Tests
 		public ServiceCollectionTests()
 		{
 			services = new ServiceCollection()
-				.AddPhemaSerializer<StabSerializer>();
+				.AddSerializer<StabSerializer>();
 		}
 
 		[Fact]

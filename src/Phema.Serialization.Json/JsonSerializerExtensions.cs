@@ -1,16 +1,13 @@
-using System;
 using Microsoft.Extensions.DependencyInjection;
+using Phema.Serialization.Internal;
 
 namespace Phema.Serialization
 {
 	public static class JsonSerializerExtensions
 	{
-		public static IServiceCollection AddPhemaJsonSerializer(this IServiceCollection services, Action<JsonSerializerOptions> options = null)
+		public static IServiceCollection AddJsonSerializer(this IServiceCollection services)
 		{
-			options = options ?? (o => {});
-			
-			return services.AddPhemaSerializer<JsonSerializer>()
-				.Configure(options);
+			return services.AddSerializer<JsonSerializer>();
 		}
 	}
 }

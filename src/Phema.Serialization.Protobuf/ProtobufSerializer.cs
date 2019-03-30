@@ -1,7 +1,4 @@
 using System.IO;
-
-using Microsoft.Extensions.Options;
-
 using ProtoBuf;
 
 namespace Phema.Serialization
@@ -21,7 +18,7 @@ namespace Phema.Serialization
 			using (var stream = new MemoryStream())
 			{
 				Serializer.Serialize(stream, value);
-				
+
 				return stream.ToArray();
 			}
 		}

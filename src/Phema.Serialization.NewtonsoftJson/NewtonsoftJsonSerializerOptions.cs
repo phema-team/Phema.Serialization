@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Phema.Serialization
 {
-	public class JsonSerializerOptions
+	public class NewtonsoftJsonSerializerOptions
 	{
-		public JsonSerializerOptions()
+		public NewtonsoftJsonSerializerOptions()
 		{
 			Encoding = Encoding.UTF8;
 			SerializerSettings = new JsonSerializerSettings();
