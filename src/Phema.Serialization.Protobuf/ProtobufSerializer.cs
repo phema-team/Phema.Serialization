@@ -7,20 +7,17 @@ namespace Phema.Serialization
 	{
 		public TValue Deserialize<TValue>(byte[] data)
 		{
-			using (var stream = new MemoryStream(data))
-			{
-				return Serializer.Deserialize<TValue>(stream);
-			}
+			using var stream = new MemoryStream(data);
+			return Serializer.Deserialize<TValue>(stream);
 		}
 
 		public byte[] Serialize<TValue>(TValue value)
 		{
-			using (var stream = new MemoryStream())
-			{
-				Serializer.Serialize(stream, value);
+			using var stream = new MemoryStream();
 
-				return stream.ToArray();
-			}
+			Serializer.Serialize(stream, value);
+
+			return stream.ToArray();
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace Phema.Serialization.MessagePack.Tests
 		{
 			services = new ServiceCollection();
 		}
-		
+
 		[Fact]
 		public void AddsOptions()
 		{
@@ -22,26 +22,37 @@ namespace Phema.Serialization.MessagePack.Tests
 				.BuildServiceProvider();
 
 			var options = provider.GetService<IOptions<MessagePackSerializerOptions>>();
-			
+
 			Assert.NotNull(options);
 			Assert.NotNull(options.Value);
-			
-			// global::MessagePack.MessagePackSerializer
-			Assert.Equal(ContractlessStandardResolver.Instance, options.Value.FormatterResolver);
+
+			Assert.Equal(
+				global::MessagePack.MessagePackSerializerOptions
+					.Default
+					.WithResolver(ContractlessStandardResolver.Instance)
+					.Resolver,
+				options.Value.SerializerOptions.Resolver);
+
+			Assert.Equal(
+				global::MessagePack.MessagePackSerializerOptions
+					.Default
+					.WithResolver(ContractlessStandardResolver.Instance)
+					.UseLZ4Compression,
+				options.Value.SerializerOptions.UseLZ4Compression);
 		}
-		
+
 		[Fact]
 		public void ConfiguresOptions()
 		{
 			var resolver = new DynamicContractlessObjectResolverAllowPrivate();
-			
+
 			var provider = services
-				.AddMessagePackSerializer(o => o.FormatterResolver = resolver)
+				.AddMessagePackSerializer(o => o.WithResolver(resolver))
 				.BuildServiceProvider();
 
 			var options = provider.GetService<IOptions<MessagePackSerializerOptions>>();
-			
-			Assert.Equal(resolver, options.Value.FormatterResolver);
+
+			Assert.Equal(resolver, options.Value.SerializerOptions.Resolver);
 		}
 	}
 }

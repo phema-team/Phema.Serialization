@@ -2,7 +2,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Phema.Serialization.Json.Tests
+namespace Phema.Serialization.MessagePack.Tests
 {
 	public class SerializationTests
 	{

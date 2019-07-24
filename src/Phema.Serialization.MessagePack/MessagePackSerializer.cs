@@ -1,3 +1,5 @@
+using System;
+using MessagePack;
 using Microsoft.Extensions.Options;
 
 namespace Phema.Serialization
@@ -13,12 +15,12 @@ namespace Phema.Serialization
 		
 		public TValue Deserialize<TValue>(byte[] data)
 		{
-			return MessagePack.MessagePackSerializer.Deserialize<TValue>(data, options.FormatterResolver);
+			return MessagePack.MessagePackSerializer.Deserialize<TValue>(data.AsMemory(), options.SerializerOptions);
 		}
 
 		public byte[] Serialize<TValue>(TValue value)
 		{
-			return MessagePack.MessagePackSerializer.Serialize(value, options.FormatterResolver);
+			return MessagePack.MessagePackSerializer.Serialize(value, options.SerializerOptions);
 		}
 	}
 }

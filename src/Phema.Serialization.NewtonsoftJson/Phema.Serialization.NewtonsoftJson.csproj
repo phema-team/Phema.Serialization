@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<RootNamespace>Phema.Serialization</RootNamespace>
 		<LangVersion>8</LangVersion>
-		<Version>3.0.0-preview3.0.0</Version>
+		<Version>3.0.0</Version>
 		<Authors>sergeyshaykhullin</Authors>
 		<Description>C# Serialization wrapper for Microsoft.Extensions.DependencyInjection</Description>
 		<PackageTags>.NETCore;ASP.NETCore;Serialization</PackageTags>
@@ -18,7 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+	  <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
 	</ItemGroup>
 
 </Project>
